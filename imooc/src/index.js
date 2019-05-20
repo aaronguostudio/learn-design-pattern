@@ -1,5 +1,9 @@
 import loadImg from './ch03-single-promise'
 import { SingleObject, SingleLoginForm } from './ch05-singleton'
+import { MyClass } from './ch07-decorator-1'
+import { MathAdd, ReadonlyPerson } from './ch07-decorator-2'
+import agent from './ch08-proxy-2'
+import { Observer, Subject } from './ch10-observer'
 
 // Parent
 class Person {
@@ -77,3 +81,41 @@ let loginForm2 = SingleLoginForm.getInstance()
 loginForm2.show()
 loginForm2.hide()
 loginForm2.show()
+
+// Decorator
+console.log('>>> Decorator')
+let obj = new MyClass()
+console.log('>', obj.foo())
+
+let mathAdd = new MathAdd()
+mathAdd.add()
+
+let p = new ReadonlyPerson('Aaron', 'Guo')
+console.log('>', p.name)
+// Can't write
+// p.name = function () {}
+
+// Proxy
+console.log('>>> Proxy')
+console.log(agent.name)
+console.log(agent.phone)
+console.log(agent.price)
+console.log(agent.age)
+agent.customPrice = 100000
+// price is too low
+
+try {
+  agent.customPrice = 100
+} catch (err) {
+  console.log('> custom price is not ok')
+}
+
+// Observer
+console.log('>>> Observer')
+let s = new Subject()
+new Observer('o1', s)
+new Observer('o2', s)
+new Observer('o3', s)
+s.setState(1)
+s.setState(2)
+s.setState(3)
