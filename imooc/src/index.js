@@ -1,4 +1,5 @@
 import loadImg from './ch03-single-promise'
+import { SingleObject, SingleLoginForm } from './ch05-singleton'
 
 // Parent
 class Person {
@@ -51,3 +52,28 @@ result.then(img => {
 }).catch(err => {
   console.log('> err', err)
 })
+
+// Singleton
+// 不要使用 new 来创建对象
+let so1 = SingleObject.getInstance()
+so1.invoke()
+so1.invoke()
+let so2 = SingleObject.getInstance()
+so2.invoke()
+so2.invoke()
+let so3 = SingleObject.getInstance()
+so3.invoke()
+so3.invoke()
+console.log('> Are they singleton', so1 === so2, so1 === so3, so2 === so3)
+
+let loginForm1 = SingleLoginForm.getInstance()
+loginForm1.show()
+loginForm1.show()
+loginForm1.show()
+loginForm1.hide()
+loginForm1.show()
+
+let loginForm2 = SingleLoginForm.getInstance()
+loginForm2.show()
+loginForm2.hide()
+loginForm2.show()
