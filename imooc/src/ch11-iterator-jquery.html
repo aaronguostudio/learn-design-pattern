@@ -1,0 +1,49 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <div>
+      <a href="">1</a>
+      <a href="">2</a>
+      <a href="">3</a>
+      <a href="">4</a>
+      <a href="">5</a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      // iterator 迭代器
+      // 顺序访问有序集合，使用者无需知道内部的结构
+
+      // 以下三种数组都需要不同的方法达到遍历的目的
+      var arr = [1, 2, 3, 4, 5]
+      var nodeList = document.getElementsByTagName('a')
+      var $a = $('a')
+
+      // arr.forEach(item => {
+      //   console.log(item)
+      // })
+
+      // var i, length = nodeList.length
+      // for ( i = 0; i < length; i++ ) {
+      //   console.log(nodeList[i])
+      // }
+
+      // $a.each((key, elem) => {
+      //   console.log(key, elem)
+      // })
+
+      // 统一的遍历函数
+      function each (data) {
+        var $data = $(data) // 生成迭代器
+        $data.each((key, val) => {
+          console.log('>', key, val)
+        })
+      }
+
+      each(arr)
+      each(nodeList)
+      each($a)
+    </script>
+  </body>
+</html>

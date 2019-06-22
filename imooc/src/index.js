@@ -1,9 +1,12 @@
+import $ from 'jquery'
 import loadImg from './ch03-single-promise'
 import { SingleObject, SingleLoginForm } from './ch05-singleton'
 import { MyClass } from './ch07-decorator-1'
 import { MathAdd, ReadonlyPerson } from './ch07-decorator-2'
 import agent from './ch08-proxy-2'
 import { Observer, Subject } from './ch10-observer'
+import fsm from './ch12-state-machine'
+
 
 // Parent
 class Person {
@@ -119,3 +122,23 @@ new Observer('o3', s)
 s.setState(1)
 s.setState(2)
 s.setState(3)
+
+
+// State
+
+let $btn = $('#btn1')
+$btn.click(() => {
+  if (fsm.is('收藏')) {
+    fsm.doState()
+    updateText()
+  } else {
+    fsm.deleteStore()
+    updateText()
+  }
+})
+
+function updateText () {
+  $btn.text(fsm.state)
+}
+
+updateText()
